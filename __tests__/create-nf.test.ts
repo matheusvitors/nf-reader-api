@@ -10,7 +10,6 @@ describe('Create Nota Fiscal - Integration Test', () => {
 			link: 'http://teste.com/3',
 			data: new Date()
 		})
-		console.log(response.body);
 
 		expect(response.status).toEqual(201);
 	});

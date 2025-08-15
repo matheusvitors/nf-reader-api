@@ -27,12 +27,12 @@ export const editNfController = async (request: Request, response: Response) => 
 				const notaFiscal: NotaFiscal = {
 					id: request.params.id,
 					link: request.body.link,
-					data: new Date(request.body.link)
+					data: new Date(request.body.link),
+					check: request.body.lido
 				}
 				await repository.edit(notaFiscal);
 			}
 		}
-
 	} catch (error) {
 		response.status(500).json({message: 'Erro inesperado do servidor.'})
 	} finally {

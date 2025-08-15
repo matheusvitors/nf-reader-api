@@ -23,7 +23,8 @@ export const createNfController = async (request: Request, response: Response) =
 			const notaFiscal: NotaFiscal = {
 				id: uuidv7(),
 				link: request.body.link,
-				data: new Date(request.body.data)
+				data: new Date(request.body.data),
+				check: false
 			}
 
 			await repository.create(notaFiscal);

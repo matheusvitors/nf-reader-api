@@ -9,6 +9,7 @@ describe('Get Nota Fiscal - Integration Test', () => {
 		.get(`/nf/${notaFiscal1.id}`)
 
 		expect(response.status).toEqual(200);
+		expect(response.body.response.content.id).toEqual(notaFiscal1.id);
 	});
 
 	it('should not find the nota fiscal', async () => {
