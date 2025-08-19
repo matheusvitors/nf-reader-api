@@ -10,6 +10,7 @@
 		"dev": "dotenv -e .env nodemon src/server.ts",
 		"upgrade": "ncu -u && npm i",
 		"test:watch": "vitest --ui",
+		"test": "vitest",
 		"migrate": "npx prisma migrate dev",
 		"clear-db": "npx prisma migrate reset --force",
 		"fix-ssl": "set NODE_TLS_REJECT_UNAUTHORIZED=0"

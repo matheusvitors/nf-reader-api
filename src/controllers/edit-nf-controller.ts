@@ -26,6 +26,7 @@ export const editNfController = async (request: Request, response: Response) => 
 			if(status === 200){
 				const notaFiscal: NotaFiscal = {
 					id: request.params.id,
+					description: request.body.description,
 					link: request.body.link,
 					data: new Date(request.body.link),
 					check: request.body.lido

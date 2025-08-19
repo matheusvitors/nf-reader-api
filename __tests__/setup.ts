@@ -5,6 +5,7 @@ import { beforeAll } from "vitest";
 
 export const notaFiscal1: NotaFiscal = {
 	id: uuidv7(),
+	description: 'mercado',
 	link: "http://teste.com/1",
 	data: new Date(),
 	check: true
@@ -12,6 +13,7 @@ export const notaFiscal1: NotaFiscal = {
 
 export const notaFiscal2: NotaFiscal = {
 	id: uuidv7(),
+	description: 'mercado',
 	link: "http://teste.com/2",
 	data: new Date(),
 	check: false

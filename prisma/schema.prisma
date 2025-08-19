@@ -15,8 +15,9 @@ datasource db {
 }
 
 model Notafiscal {
-    id   String   @id @unique
-    link String
-    data DateTime
-    check Boolean  @default(false)
+    id          String   @id @unique
+    description String   @default("")
+    link        String
+    data        DateTime
+    check       Boolean  @default(false)
 }
