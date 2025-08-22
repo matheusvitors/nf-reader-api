@@ -1,17 +1,26 @@
 import { database } from "@/database";
 import { NotaFiscal } from "@/NotaFiscal";
 import { Prisma } from "../generated/prisma/client";
+import { format } from "date-fns";
+import { NotaFiscalDTO } from "@/NotaFiscalDTO";
 
 interface FilterParams<T> {
 	field: keyof T;
 	value: any | { lte: Date; gte: Date };
 }
 
-
 export const repository = {
-	list: async (): Promise<NotaFiscal[]> => {
+	list: async (): Promise<NotaFiscalDTO[]> => {
 		try {
-			return await database.notafiscal.findMany();
+			const data = await database.notafiscal.findMany();
+			const notasFiscais: NotaFiscalDTO[] = data.map(nf => {return {
+				id: nf.id,
+				description: nf.description,
+				link: nf.link,
+				data: format(nf.data, 'yyyy-MM-dd'),
+				check: nf.check,
+			}})
+			return notasFiscais;
 		} catch (error) {
 			console.error(error);
 			throw error;
