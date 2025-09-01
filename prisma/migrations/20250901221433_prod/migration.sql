@@ -1,9 +1,10 @@
 -- CreateTable
 CREATE TABLE `Notafiscal` (
     `id` VARCHAR(191) NOT NULL,
+    `description` VARCHAR(191) NOT NULL DEFAULT '',
     `link` VARCHAR(191) NOT NULL,
     `data` DATETIME(3) NOT NULL,
-    `lido` BOOLEAN NOT NULL DEFAULT false,
+    `check` BOOLEAN NOT NULL DEFAULT false,
 
     UNIQUE INDEX `Notafiscal_id_key`(`id`),
     PRIMARY KEY (`id`)
