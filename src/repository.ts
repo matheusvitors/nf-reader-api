@@ -17,7 +17,8 @@ export const repository = {
 				id: nf.id,
 				description: nf.description,
 				link: nf.link,
-				data: format(nf.data, 'yyyy-MM-dd'),
+				data: nf.data,
+				// data: format(new Date(nf.data), 'yyyy-MM-dd'),
 				check: nf.check,
 			}})
 			return notasFiscais;
@@ -27,7 +28,7 @@ export const repository = {
 		}
 	},
 
-	get: async (id: string): Promise<NotaFiscal | null> => {
+	get: async (id: string): Promise<NotaFiscalDTO | null> => {
 		try {
 			const data = await database.notafiscal.findUnique({
 				where: {id},
@@ -37,7 +38,13 @@ export const repository = {
 				return null;
 			}
 
-			return data;
+			return {
+				id: data.id,
+				description: data.description,
+				link: data.link,
+				data: format(data.data, 'yyyy-MM-dd'),
+				check: data.check,
+			};
 		} catch (error) {
 			console.error(error);
 			throw error;

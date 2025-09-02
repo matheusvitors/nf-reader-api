@@ -18,6 +18,6 @@ model Notafiscal {
     id          String   @id @unique
     description String   @default("")
     link        String
-    data        DateTime
+    data        String
     check       Boolean  @default(false)
 }

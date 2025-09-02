@@ -2,6 +2,6 @@ export interface NotaFiscal {
 	id: string;
 	description: string;
 	link: string;
-	data: Date;
+	data: string;
 	check: boolean;
 }

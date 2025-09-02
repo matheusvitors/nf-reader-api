@@ -24,7 +24,7 @@ export const createNfController = async (request: Request, response: Response) =
 				id: uuidv7(),
 				description: request.body.description,
 				link: request.body.link,
-				data: new Date(request.body.data),
+				data: request.body.data,
 				check: false
 			}
 

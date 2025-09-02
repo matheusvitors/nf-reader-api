@@ -28,7 +28,7 @@ export const editNfController = async (request: Request, response: Response) => 
 					id: request.params.id,
 					description: request.body.description,
 					link: request.body.link,
-					data: new Date(request.body.data),
+					data: request.body.data,
 					check: request.body.check
 				}
 				await repository.edit(notaFiscal);
