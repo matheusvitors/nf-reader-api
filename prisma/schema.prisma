@@ -5,19 +5,18 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-    provider = "prisma-client-js"
+    provider = "prisma-client"
     output   = "../generated/prisma"
 }
 
 datasource db {
     provider = "mysql"
-    url      = env("DATABASE_URL")
 }
 
 model Notafiscal {
-    id          String   @id @unique
-    description String   @default("")
-    link        String
+    id          String  @id @unique
+    description String  @default("")
+    link        String  @db.VarChar(750)
     data        String
-    check       Boolean  @default(false)
+    check       Boolean @default(false)
 }
