@@ -5,8 +5,8 @@
 	"description": "",
 	"main": "index.js",
 	"scripts": {
-		"start": "node dist/server.js",
-		"build": "tsup src",
+		"start": "node dist/server.mjs",
+		"build": "dotenv -e .env tsup src",
 		"dev": "dotenv -e .env nodemon src/server.ts",
 		"upgrade": "ncu -u && npm i",
 		"test:watch": "vitest --ui",
@@ -28,30 +28,31 @@
 	},
 	"homepage": "https://github.com/matheusvitors/nf-reader-api#readme",
 	"dependencies": {
-		"@prisma/client": "^7.0.0",
+		"@prisma/adapter-mariadb": "^7.2.0",
+		"@prisma/client": "^7.2.0",
 		"cors": "^2.8.5",
 		"date-fns": "^4.1.0",
 		"dotenv": "^17.2.3",
-		"express": "^5.1.0",
-		"uuidv7": "^1.0.2",
-		"zod": "^4.1.12"
+		"express": "^5.2.1",
+		"uuidv7": "^1.1.0",
+		"zod": "^4.2.1"
 	},
 	"devDependencies": {
 		"@types/cors": "^2.8.19",
-		"@types/express": "^5.0.5",
-		"@types/node": "^24.10.1",
+		"@types/express": "^5.0.6",
+		"@types/node": "^25.0.3",
 		"@types/supertest": "^6.0.3",
-		"@vitest/ui": "^4.0.13",
+		"@vitest/ui": "^4.0.16",
 		"dotenv-cli": "^11.0.0",
 		"nodemon": "^3.1.11",
-		"prisma": "^7.0.0",
+		"prisma": "^7.2.0",
 		"supertest": "^7.1.4",
 		"ts-node": "^10.9.2",
 		"tsconfig-paths": "^4.2.0",
 		"tsup": "^8.5.1",
-		"tsx": "^4.20.6",
+		"tsx": "^4.21.0",
 		"typescript": "^5.9.3",
-		"vite": "^7.2.4",
-		"vitest": "^4.0.13"
+		"vite": "^7.3.0",
+		"vitest": "^4.0.16"
 	}
 }

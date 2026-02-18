@@ -2,8 +2,8 @@
 CREATE TABLE `Notafiscal` (
     `id` VARCHAR(191) NOT NULL,
     `description` VARCHAR(191) NOT NULL DEFAULT '',
-    `link` VARCHAR(191) NOT NULL,
-    `data` DATETIME(3) NOT NULL,
+    `link` VARCHAR(750) NOT NULL,
+    `data` VARCHAR(191) NOT NULL,
     `check` BOOLEAN NOT NULL DEFAULT false,
 
     UNIQUE INDEX `Notafiscal_id_key`(`id`),

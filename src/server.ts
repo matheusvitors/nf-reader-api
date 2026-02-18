@@ -3,7 +3,6 @@ import 'dotenv/config';
 import { middlewares } from "@/middlewares";
 import { routes } from "@/routes";
 import project from '../package.json';
-import { repository } from "@/repository";
 
 const app = express();
 
@@ -16,8 +15,6 @@ if(process.env.NODE_ENV !== "test") {
 	app.listen(PORT, function (){
 		console.info(`${project.systemName} running on port ${PORT}`);
 	});
-} else {
-	repository.removeAll();
 }
 
 export { app };
