@@ -5,6 +5,6 @@ export const notaFiscalTable = mysqlTable('notafiscal', {
 	description: varchar({length: 999}).notNull().default(''),
 	link: varchar({length: 999}).notNull(),
 	data: date().notNull(),
-	check: boolean().default(false)
+	check: boolean().default(false).notNull()
 });
 

@@ -11,9 +11,11 @@
 		"upgrade": "ncu -u && npm i",
 		"test:watch": "vitest --ui",
 		"test": "vitest",
-		"migrate": "npx prisma migrate dev",
-		"clear-db": "npx prisma migrate reset --force",
-		"fix-ssl": "set NODE_TLS_REJECT_UNAUTHORIZED=0"
+		"fix-ssl": "set NODE_TLS_REJECT_UNAUTHORIZED=0",
+		"db:push": "npx drizzle-kit push",
+		"db:generate": "npx drizzle-kit generate",
+		"db:migrate": "npx drizzle-kit migrate"
+
 	},
 	"repository": {
 		"type": "git",
