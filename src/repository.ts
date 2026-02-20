@@ -2,7 +2,8 @@ import { database } from "@/database";
 import { NotaFiscal } from "@/NotaFiscal";
 import { format } from "date-fns";
 import { NotaFiscalDTO } from "@/NotaFiscalDTO";
-import { notaFiscalTable } from "@/tables";
+import { and, eq, SQL } from "drizzle-orm";
+import { notaFiscalTable } from "@/schema";
 
 interface FilterParams<T> {
 	field: keyof T;
@@ -19,7 +20,6 @@ export const repository = {
 				id: nf.id,
 				description: nf.description,
 				link: nf.link,
-				// data: nf.data,
 				data: format(new Date(nf.data), 'yyyy-MM-dd'),
 				check: nf.check,
 			}})
@@ -32,9 +32,7 @@ export const repository = {
 
 	get: async (id: string): Promise<NotaFiscalDTO | null> => {
 		try {
-			const data = await database.notafiscal.findUnique({
-				where: {id},
-			})
+			const [data] = await database.select().from(notaFiscalTable).where(eq(notaFiscalTable.id, id));
 
 			if(!data) {
 				return null;
@@ -54,28 +52,41 @@ export const repository = {
 	},
 
 	find: async (field: keyof NotaFiscal, value: any): Promise<NotaFiscal | null> => {
-		const data = await database.notafiscal.findFirst({ where: {[field]: value}});
+			const [data] = await database.select().from(notaFiscalTable).where(eq(notaFiscalTable[field], value));
 
 		if(!data) {
 			return null;
 		}
 
-		return data;
+		return {
+			id: data.id,
+			description: data.description,
+			link: data.link,
+			data: format(data.data, 'yyyy-MM-dd'),
+			check: data.check,
+		};
 	},
 
 	filter: async (params: FilterParams<NotaFiscal>[]): Promise<NotaFiscal[] | null> => {
-		const where: Prisma.NotafiscalWhereInput  = params.reduce(
-			(obj, item) => Object.assign(obj, { [item.field]: item.value }), {});
+
+		const filters: SQL[] = [];
+
+		params.forEach(({ field, value}) => {
+			filters.push(eq(notaFiscalTable[field], value))
+		})
 
 		try {
-			const data = await database.notafiscal.findMany({
-				where,
-				orderBy: [
-					{ data: 'desc'},
-				]
-			});
+			const data = await database.select().from(notaFiscalTable).where(and(...filters));
 
-			return data;
+			const notasFiscais: NotaFiscalDTO[] = data.map(nf => {return {
+				id: nf.id,
+				description: nf.description,
+				link: nf.link,
+				data: format(new Date(nf.data), 'yyyy-MM-dd'),
+				check: nf.check,
+			}})
+
+			return notasFiscais;
 		} catch (error) {
 			console.error(error);
 			throw error;
@@ -85,9 +96,12 @@ export const repository = {
 
 	create: async (input: NotaFiscal): Promise<void> => {
 		try {
-
-			await database.notafiscal.create({
-				data: input
+			await database.insert(notaFiscalTable).values({
+				id: input.id,
+				description: input.description,
+				link: input.link,
+				data: new Date(input.data),
+				check: input.check,
 			});
 
 		} catch (error) {
