@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import supertest from "supertest";
 import { app } from "@/server";
-import { notaFiscal1, notaFiscal2 } from "__tests__/setup";
+import { notaFiscal1, notaFiscal2 } from "./setup";
 
 describe('Notas Fiscais Lidas/Não Lidas - Integration Test', () => {
 

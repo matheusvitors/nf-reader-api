@@ -93,7 +93,6 @@ export const repository = {
 		}
 	},
 
-
 	create: async (input: NotaFiscal): Promise<void> => {
 		try {
 			await database.insert(notaFiscalTable).values({
@@ -110,15 +109,14 @@ export const repository = {
 		}
 	},
 
-	edit: async (input: NotaFiscal): Promise<NotaFiscal | null> => {
+	edit: async (input: NotaFiscal): Promise<void> => {
 		try {
-			const result = await database.notafiscal.update({
-				data: input,
-				where: {
-					id: input.id
-				}
-			});
-			return result;
+			await database.update(notaFiscalTable).set({
+				description: input.description,
+				link: input.link,
+				data: new Date(input.data),
+				check: input.check,
+			})
 		} catch (error) {
 			console.error(error);
 			throw error;
@@ -127,7 +125,7 @@ export const repository = {
 
 	remove: async (id: string): Promise<void> => {
 		try {
-			await database.notafiscal.delete({where: {id}})
+			await database.delete(notaFiscalTable).where(eq(notaFiscalTable.id, id));
 		} catch (error) {
 			console.error(error);
 			throw error;
@@ -136,7 +134,7 @@ export const repository = {
 
 	removeAll: async () => {
 		try {
-			await database.notafiscal.deleteMany({})
+			await database.delete(notaFiscalTable);
 		} catch (error) {
 			console.error(error);
 			throw error;

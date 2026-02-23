@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import supertest from "supertest";
 import { app } from "@/server";
-import { notaFiscal2 } from "__tests__/setup";
+import { notaFiscal2 } from "./setup";
 
 describe('Edit Nota Fiscal - Integration Test', () => {
 	it('should edit a nota fiscal', async () => {
